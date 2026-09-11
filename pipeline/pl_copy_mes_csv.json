@@ -465,6 +465,12 @@
 				"type": "string"
 			}
 		},
+		"variables": {
+			"fast": {
+				"type": "String",
+				"defaultValue": "1"
+			}
+		},
 		"annotations": [],
 		"lastPublishTime": "2026-09-08T12:34:50Z"
 	},
