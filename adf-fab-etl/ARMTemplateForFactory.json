@@ -139,7 +139,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Users/13535507592@139.com/10_Daily_Data_Generator",
+							"notebookPath": "/Users/13535507592@139.com/databricks-fab-etl/10_Daily_Data_Generator",
 							"baseParameters": {
 								"test_param": "hello_from_adf"
 							}
@@ -171,7 +171,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Users/13535507592@139.com/01_Bronze_Ingest"
+							"notebookPath": "/Users/13535507592@139.com/databricks-fab-etl/01_Bronze_Ingest"
 						},
 						"linkedServiceName": {
 							"referenceName": "AzureDatabricks2",
@@ -200,7 +200,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Users/13535507592@139.com/02_Silver_Clean"
+							"notebookPath": "/Users/13535507592@139.com/databricks-fab-etl/02_Silver_Clean"
 						},
 						"linkedServiceName": {
 							"referenceName": "AzureDatabricks2",
@@ -229,7 +229,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Users/13535507592@139.com/03_Gold_Aggregate"
+							"notebookPath": "/Users/13535507592@139.com/databricks-fab-etl/03_Gold_Aggregate"
 						},
 						"linkedServiceName": {
 							"referenceName": "AzureDatabricks2",
@@ -258,7 +258,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Users/13535507592@139.com/04_DataQuality_Check"
+							"notebookPath": "/Users/13535507592@139.com/databricks-fab-etl/04_DataQuality_Check"
 						},
 						"linkedServiceName": {
 							"referenceName": "AzureDatabricks2",
