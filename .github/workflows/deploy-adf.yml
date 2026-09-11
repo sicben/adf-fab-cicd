@@ -6,9 +6,9 @@ on:
   workflow_dispatch:      # 手动按钮，备用
 
 jobs:
-  deploy:
+  whatif:
+    name: Pre-check (dry run, no changes)
     runs-on: ubuntu-latest
-    environment: prod        # ← 新加这一行
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,9 +25,44 @@ jobs:
             -p "$(printf '%s' "$AZ_CLIENT_SECRET" | tr -d '[:space:]')" \
             -t "$(printf '%s' "$AZ_TENANT_ID" | tr -d '[:space:]')"
           az account set --subscription "$(printf '%s' "$AZ_SUBSCRIPTION_ID" | tr -d '[:space:]')"
-      - name: Deploy ARM to prod factory
+
+      - name: What-if report
         env:
           CONN_STR: ${{ secrets.ADF_STORAGE_CONNECTION_STRING }}
+        run: |
+          az deployment group what-if \
+            --resource-group rg-fab-etl \
+            --template-file adf-fab-etl/ARMTemplateForFactory.json \
+            --parameters @adf-fab-etl/ARMTemplateParametersForFactory.json \
+              factoryName=adf-fab-etl-prod-83127 \
+              AzureBlobStorage1_connectionString="$CONN_STR" \
+              AzureDatabricks2_accessToken=""
+
+  deploy:
+    name: Deploy to prod (needs approval)
+    needs: whatif
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        env:
+          AZ_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          AZ_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          AZ_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          AZ_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        run: |
+          az login --service-principal \
+            -u "$(printf '%s' "$AZ_CLIENT_ID" | tr -d '[:space:]')" \
+            -p "$(printf '%s' "$AZ_CLIENT_SECRET" | tr -d '[:space:]')" \
+            -t "$(printf '%s' "$AZ_TENANT_ID" | tr -d '[:space:]')"
+          az account set --subscription "$(printf '%s' "$AZ_SUBSCRIPTION_ID" | tr -d '[:space:]')"
+
+      - name: Deploy ARM to prod factory
+        env:
+          CONN_STR: ${{ secrets.ADF_STORAGE_CONNECTION_STRING }}     
         run: |
           az deployment group create \
             --resource-group rg-fab-etl \
