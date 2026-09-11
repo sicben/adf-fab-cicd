@@ -1,0 +1,36 @@
+{
+	"name": "trigger_06_d",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_copy_mes_csv",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"folderPath": "mes/2026-09-01",
+					"run_date": "@formatDateTime(trigger().scheduledTime,'yyyy-MM-dd')"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2026-09-03T11:18:00",
+				"timeZone": "China Standard Time",
+				"schedule": {
+					"minutes": [
+						45
+					],
+					"hours": [
+						0
+					]
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,6 @@
+{
+	"name": "msi",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

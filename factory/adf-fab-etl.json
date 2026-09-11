@@ -1,0 +1,15 @@
+{
+	"name": "adf-fab-etl",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "southeastasia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "09a52b15-6647-40f5-a259-aee9ed30c909",
+		"tenantId": "be7c8433-dddf-499d-9ace-1e5ad3072243"
+	}
+}
