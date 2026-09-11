@@ -160,12 +160,6 @@
 								"dependencyConditions": [
 									"Succeeded"
 								]
-							},
-							{
-								"activity": "Copy data1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
 							}
 						],
 						"policy": {
@@ -192,12 +186,6 @@
 						"dependsOn": [
 							{
 								"activity": "01",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							},
-							{
-								"activity": "10",
 								"dependencyConditions": [
 									"Succeeded"
 								]
