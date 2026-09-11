@@ -275,7 +275,16 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "raw-data/api-users/*.json"
+					},
+					{
+						"name": "Destination",
+						"value": "raw-data/parquet-users/@{coalesce(pipeline().parameters.run_date, formatDateTime(utcNow(),'yyyy-MM-dd'))}/users.parquet"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "JsonSource",
