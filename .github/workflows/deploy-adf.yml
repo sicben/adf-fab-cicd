@@ -30,8 +30,8 @@ jobs:
         run: |
           az deployment group create \
             --resource-group rg-fab-etl \
-            --template-file ARMTemplateForFactory.json \
-            --parameters @ARMTemplateParametersForFactory.json \
+            --template-file adf-fab-etl/ARMTemplateForFactory.json \
+            --parameters @adf-fab-etl/ARMTemplateParametersForFactory.json \
               factoryName=adf-fab-etl-prod-83127 \
               AzureBlobStorage1_connectionString="$CONN_STR" \
               AzureDatabricks2_accessToken=""
