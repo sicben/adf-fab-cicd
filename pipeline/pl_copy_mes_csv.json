@@ -272,7 +272,7 @@
 				]
 			},
 			{
-				"name": "pipline ddddd",
+				"name": "end",
 				"type": "Copy",
 				"dependsOn": [
 					{
