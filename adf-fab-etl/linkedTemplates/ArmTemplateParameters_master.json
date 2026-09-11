@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-fab-etl"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureDatabricks2_accessToken": {
+			"value": ""
+		},
+		"AzureDatabricks2_properties_typeProperties_existingClusterId": {
+			"value": "0903-070808-6hs0o7i8"
+		},
+		"ls_rest_jsonplaceholder_properties_typeProperties_url": {
+			"value": "https://jsonplaceholder.typicode.com"
+		},
+		"trg_event_mes_csv_properties_pl_copy_mes_csv_parameters_folderPath": {
+			"value": "@replace(triggerBody().folderPath, 'raw-data/', '')"
+		},
+		"trg_event_mes_csv_properties_typeProperties_scope": {
+			"value": "/subscriptions/8a6f0b15-cfd7-4a19-8254-d6f2d415f66c/resourceGroups/rg-fab-etl/providers/Microsoft.Storage/storageAccounts/fabdatalake83127"
+		},
+		"trigger_06_d_properties_pl_copy_mes_csv_parameters_folderPath": {
+			"value": "mes/2026-09-01"
+		},
+		"trigger_06_d_properties_pl_copy_mes_csv_parameters_run_date": {
+			"value": "@formatDateTime(trigger().scheduledTime,'yyyy-MM-dd')"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

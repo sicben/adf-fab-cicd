@@ -1,0 +1,98 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-fab-etl"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureDatabricks2_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks2'"
+		},
+		"AzureDatabricks2_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0903-070808-6hs0o7i8"
+		},
+		"ls_rest_jsonplaceholder_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://jsonplaceholder.typicode.com"
+		},
+		"trg_event_mes_csv_properties_pl_copy_mes_csv_parameters_folderPath": {
+			"type": "string",
+			"defaultValue": "@replace(triggerBody().folderPath, 'raw-data/', '')"
+		},
+		"trg_event_mes_csv_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/8a6f0b15-cfd7-4a19-8254-d6f2d415f66c/resourceGroups/rg-fab-etl/providers/Microsoft.Storage/storageAccounts/fabdatalake83127"
+		},
+		"trigger_06_d_properties_pl_copy_mes_csv_parameters_folderPath": {
+			"type": "string",
+			"defaultValue": "mes/2026-09-01"
+		},
+		"trigger_06_d_properties_pl_copy_mes_csv_parameters_run_date": {
+			"type": "string",
+			"defaultValue": "@formatDateTime(trigger().scheduledTime,'yyyy-MM-dd')"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-fab-etl_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"AzureDatabricks2_accessToken": {
+						"value": "[parameters('AzureDatabricks2_accessToken')]"
+					},
+					"AzureDatabricks2_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricks2_properties_typeProperties_existingClusterId')]"
+					},
+					"ls_rest_jsonplaceholder_properties_typeProperties_url": {
+						"value": "[parameters('ls_rest_jsonplaceholder_properties_typeProperties_url')]"
+					},
+					"trg_event_mes_csv_properties_pl_copy_mes_csv_parameters_folderPath": {
+						"value": "[parameters('trg_event_mes_csv_properties_pl_copy_mes_csv_parameters_folderPath')]"
+					},
+					"trg_event_mes_csv_properties_typeProperties_scope": {
+						"value": "[parameters('trg_event_mes_csv_properties_typeProperties_scope')]"
+					},
+					"trigger_06_d_properties_pl_copy_mes_csv_parameters_folderPath": {
+						"value": "[parameters('trigger_06_d_properties_pl_copy_mes_csv_parameters_folderPath')]"
+					},
+					"trigger_06_d_properties_pl_copy_mes_csv_parameters_run_date": {
+						"value": "[parameters('trigger_06_d_properties_pl_copy_mes_csv_parameters_run_date')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
